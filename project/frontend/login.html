@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Вход</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Навигация -->
+  <nav id="main-nav">
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="menu.html">Меню</a></li>
+      <li><a href="orders.html">Заказы</a></li>
+      <li class="active"><a href="register.html">Регистрация</a></li>
+      <li class="admin-only hidden"><a href="dishes.html">Добавить блюдо</a></li>
+      <li id="logout-li" class="right"><a href="#" onclick="logout()">Выйти</a></li>
+      <li id="login-status" class="right"></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <h1>Войти</h1>
+
+    <!-- Форма входа -->
+    <form id="login-form">
+      <input type="text" id="username" placeholder="Имя пользователя" required />
+      <br /><br />
+      <input type="password" id="password" placeholder="Пароль" required />
+      <br /><br />
+      <button type="submit">Войти</button>
+    </form>
+
+    <p id="status" style="color: red;"></p>
+  </div>
+
+  <!-- Подключаем JS -->
+  <script src="/frontend/js/auth.js"></script>
+  <script src="/frontend/js/login-page.js"></script>
+  <!-- === Уведомления === -->
+  <div id="notification-container">
+    <div class="notification success hidden">
+      <span class="message">Блюдо успешно добавлено</span>
+      <button class="close-btn">&times;</button>
+    </div>
+  </div>
+</body>
+</html>

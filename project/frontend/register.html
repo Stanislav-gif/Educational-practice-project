@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Регистрация</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Навигация -->
+  <nav id="main-nav">
+    <ul>
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="login.html">Войти</a></li>
+      <li class="active"><a href="register.html">Регистрация</a></li>
+    </ul>
+  </nav>
+
+  <h1>Регистрация</h1>
+
+  <form id="register-form">
+    <label>Имя:</label>
+    <input type="text" id="username" required />
+
+    <label>Пароль:</label>
+    <input type="password" id="password" required />
+
+    <label>Роль:</label>
+    <select id="role">
+      <option value="student">Студент</option>
+      <option value="admin">Администратор</option>
+    </select>
+
+    <button type="submit">Зарегистрироваться</button>
+  </form>
+
+  <p id="status"></p>
+
+  <!-- === Уведомления === -->
+  <div id="notification-container">
+    <div class="notification success hidden">
+      <span class="message">Блюдо успешно добавлено</span>
+      <button class="close-btn">&times;</button>
+    </div>
+  </div>
+
+  <!-- Подключаем JS как модули -->
+  <script type="module" src="js/utils/notification.js"></script>
+  <script type="module" src="js/register-page.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>

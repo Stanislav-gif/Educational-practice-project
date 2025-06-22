@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Заказы</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Навигация -->
+  <nav id="main-nav">
+    <ul>
+      <li><a href="/frontend/index.html">Главная</a></li>
+      <li class="active"><a href="/frontend/menu.html">Меню</a></li>
+      <li><a href="/frontend/orders.html">Заказы</a></li>
+      <li class="admin-only"><a href="/frontend/dishes.html">Добавить блюдо</a></li>
+      <li id="logout-li" class="right"><a href="#" onclick="logout()">Выйти</a></li>
+      <li id="login-status" class="right">Вы вошли как <span id="username"></span></li>
+    </ul>
+  </nav>
+
+  <h1>Заказы</h1>
+
+  <!-- Фильтр заказов (доступен всем) -->
+  <div class="filter-container">
+    <label for="order-filter">Фильтр по статусу:</label>
+    <select id="order-filter" class="filter-select">
+      <option value="all">Все статусы</option>
+      <option value="new">Новый</option>
+      <option value="in_process">В процессе</option>
+      <option value="completed">Выполнен</option>
+    </select>
+  </div>
+
+  <!-- Контейнер для отображения заказов -->
+  <div id="orders-list">Загрузка заказов...</div>
+
+  <!-- === Уведомления === -->
+  <div id="notification-container">
+    <div class="notification success hidden">
+      <span class="message">Блюдо успешно добавлено</span>
+      <button class="close-btn">&times;</button>
+    </div>
+  </div>
+
+  <!-- Подключаем JS -->
+  <script type="module" src="/frontend/js/auth.js"></script>
+  <script type="module" src="/frontend/js/orders-page.js"></script>
+</body>
+</html>

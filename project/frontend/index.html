@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Главная</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Навигация -->
+  <nav id="main-nav">
+    <ul>
+      <li><a href="/frontend/index.html">Главная</a></li>
+      <li><a href="/frontend/menu.html">Меню</a></li>
+      <li><a href="/frontend/orders.html">Заказы</a></li>
+      <li class="admin-only hidden"><a href="/frontend/dishes.html">Добавить блюдо</a></li>
+      <li class="active"><a href="register.html">Регистрация</a></li>
+      <li id="logout-li" class="right"><a href="#" onclick="logout()">Выйти</a></li>
+      <li id="login-status" class="right">Вы вошли как <span id="username"></span></li>
+    </ul>
+  </nav>
+
+  <h1>Добро пожаловать в кафе</h1>
+  <p>Перед тем как заходить туда и делать заказ.Нужно Зарегистрироваться!</p>
+  <p>Выберите раздел выше, чтобы посмотреть меню и сделать заказ.</p>
+  <p>Также есть раздел-заказы,в котором ты можешь посмотреть свой заказ и статус его готовности.</p>
+  <!-- Подключаем JS -->
+  <script type="module" src="js/auth.js"></script>
+  <!-- === Уведомления === -->
+  <div id="notification-container">
+    <div class="notification success hidden">
+      <span class="message">Блюдо успешно добавлено</span>
+      <button class="close-btn">&times;</button>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <title>Добавить блюдо</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Навигация -->
+  <nav id="main-nav">
+    <ul>
+      <li><a href="/frontend/index.html">Главная</a></li>
+      <li><a href="/frontend/menu.html">Меню</a></li>
+      <li><a href="/frontend/orders.html">Заказы</a></li>
+      <li class="admin-only"><a href="/frontend/dishes.html">Добавить блюдо</a></li>
+      <li id="logout-li" class="right"><a href="#" onclick="logout()">Выйти</a></li>
+      <li id="login-status" class="right"></li>
+    </ul>
+  </nav>
+
+  <h1>Добавить новое блюдо</h1>
+
+  <form id="add-dish-form">
+    <label>Название:</label>
+    <input type="text" id="dish-name" required />
+
+    <br />
+
+    <label>Описание:</label>
+    <textarea id="dish-description" required></textarea>
+
+    <br />
+
+    <label>Цена:</label>
+    <input type="number" id="dish-price" step="0.01" required />
+
+    <br />
+
+    <label>Дата:</label>
+    <input type="date" id="dish-date" required />
+
+    <br />
+
+    <button type="submit">Добавить блюдо</button>
+  </form>
+
+  <h2>Все блюда</h2>
+  <div id="dishes-container">Загрузка блюд...</div>
+
+  <!-- Подключаем модули -->
+  <script type="module" src="/frontend/js/auth.js"></script>
+  <script type="module" src="/frontend/js/dishes-page.js"></script>
+  <!-- === Уведомления === -->
+  <div id="notification-container">
+    <div class="notification success hidden">
+      <span class="message">Блюдо успешно добавлено</span>
+      <button class="close-btn">&times;</button>
+    </div>
+  </div>
+</body>
+</html>

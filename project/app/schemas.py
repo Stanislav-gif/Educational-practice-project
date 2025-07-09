@@ -31,7 +31,6 @@ class MenuResponse(BaseModel):
     class Config:
         from_attributes = True
 
-
 # Заказы
 class OrderItemCreate(BaseModel):
     dish_id: int
@@ -59,7 +58,6 @@ class OrderResponse(BaseModel):
     class Config:
         from_attributes = True
 
-
 # Пользователи
 class UserCreate(BaseModel):
     username: str
@@ -81,7 +79,6 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username: str | None = None
-
 
 # Обновление статуса заказа
 class OrderUpdateStatus(BaseModel):

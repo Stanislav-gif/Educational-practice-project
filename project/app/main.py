@@ -41,5 +41,4 @@ app.include_router(menu.router)
 app.include_router(order.router)
 
 if __name__ == "__main__":
-    import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=5500, reload=True)

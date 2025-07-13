@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.models import Base
 from app.db import engine
 from app.routers import auth, users, dishes, menu, order
+import uvicorn
 
 # Создаем таблицы в БД
 Base.metadata.create_all(bind=engine)
@@ -38,3 +39,7 @@ app.include_router(users.router)
 app.include_router(dishes.router)
 app.include_router(menu.router)
 app.include_router(order.router)
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="127.0.0.1", port=5500, reload=True)

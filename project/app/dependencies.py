@@ -5,10 +5,12 @@ from jose import JWTError, jwt
 from app.db import SessionLocal
 from app.models import User
 from app.schemas import TokenData
-from app.utils import SECRET_KEY, ALGORITHM
+from app.utils import SECRET_KEY, ALGORITHM, verify_password  # Импортируем явно
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
+
+# Зависимость для получения сессии БД
 def get_db():
     db = SessionLocal()
     try:
@@ -27,7 +29,8 @@ def authenticate_user(db: Session, username: str, password: str):
     user = get_user(db, username)
     if not user:
         return False
-    from app.utils import verify_password
+    if not user.hashed_password:
+        return False
     if not verify_password(password, user.hashed_password):
         return False
     return user
@@ -45,7 +48,7 @@ async def get_current_user(
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
+        username: str | None = payload.get("sub")  # Явно указываем, что может быть None
         if username is None:
             raise credentials_exception
         token_data = TokenData(username=username)

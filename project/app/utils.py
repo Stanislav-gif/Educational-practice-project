@@ -4,6 +4,7 @@ from fastapi import Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from app.core.security import verify_password
 from app.db import get_db
+from app.repositories import get_user_by_username
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/token")
 
@@ -35,8 +36,6 @@ def get_current_user(token: str = Depends(oauth2_scheme), db: Session = Depends(
     return user
 
 def authenticate_user(db: Session, username: str, password: str):
-    from app.repositories import get_user_by_username
-
     user = get_user_by_username(db, username)
     if not user:
         return False

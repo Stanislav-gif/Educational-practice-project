@@ -1,3 +1,8 @@
+/**
+ * Показывает уведомление на экране
+ * @param {string} message - Текст уведомления
+ * @param {boolean} isSuccess - true = успех, false = ошибка
+ */
 export function showNotification(message, isSuccess = true) {
   const notificationContainer = document.getElementById("notification-container");
   if (!notificationContainer) {
@@ -5,46 +10,30 @@ export function showNotification(message, isSuccess = true) {
     return;
   }
 
-  const notification = notificationContainer.querySelector(".notification");
-  if (!notification) {
-    console.warn("Элемент .notification не найден");
-    return;
-  }
+  // Создаём элемент уведомления
+  const notification = document.createElement("div");
+  notification.className = `notification ${isSuccess ? "success" : "error"} hidden`;
+  notification.innerHTML = `
+    <span class="message">${message}</span>
+    <button class="close-btn">&times;</button>
+  `;
 
-  const messageSpan = notification.querySelector(".message");
-  if (!messageSpan) {
-    console.warn("Элемент .message не найден");
-    return;
-  }
+  notificationContainer.appendChild(notification);
 
-  // Обновляем текст
-  messageSpan.textContent = message;
+  // Анимация появления
+  setTimeout(() => {
+    notification.classList.remove("hidden");
+  }, 10); // Небольшая задержка для корректной анимации
 
-  // Обновляем стили
-  notification.classList.remove("success", "error");
-  notification.classList.add(isSuccess ? "success" : "error");
-
-  // Показываем уведомление
-  notification.classList.remove("hidden");
-  notification.style.display = "flex";
-
-  // Скрываем через 3 секунды
+  // Автоматическое исчезновение через 3 секунды
   setTimeout(() => {
     notification.classList.add("hidden");
-    setTimeout(() => {
-      notification.style.display = "none";
-    }, 300);
+    setTimeout(() => notification.remove(), 300);
   }, 3000);
 
-  // Добавляем обработчик закрытия по крестику
-  const closeBtn = notification.querySelector(".close-btn");
-  if (closeBtn && !closeBtn.hasAttribute("data-listener-added")) {
-    closeBtn.setAttribute("data-listener-added", "true"); // Защита от дублирования обработчика
-    closeBtn.addEventListener("click", () => {
-      notification.classList.add("hidden");
-      setTimeout(() => {
-        notification.style.display = "none";
-      }, 300);
-    });
-  }
+  // Обработчик закрытия кнопкой ×
+  notification.querySelector(".close-btn").addEventListener("click", () => {
+    notification.classList.add("hidden");
+    setTimeout(() => notification.remove(), 300);
+  });
 }

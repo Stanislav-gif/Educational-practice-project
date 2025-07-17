@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Добавить блюдо</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -18,44 +20,43 @@
     </ul>
   </nav>
 
-  <h1>Добавить новое блюдо</h1>
+  <div class="container">
+    <h1>Добавить новое блюдо</h1>
 
-  <form id="add-dish-form">
-    <label>Название:</label>
-    <input type="text" id="dish-name" required />
+    <form id="add-dish-form">
+      <label>Название:</label>
+      <input type="text" id="dish-name" required />
 
-    <br />
+      <br />
 
-    <label>Описание:</label>
-    <textarea id="dish-description" required></textarea>
+      <label>Описание:</label>
+      <textarea id="dish-description" required></textarea>
 
-    <br />
+      <br />
 
-    <label>Цена:</label>
-    <input type="number" id="dish-price" step="0.01" required />
+      <label>Цена:</label>
+      <input type="number" id="dish-price" step="0.01" required />
 
-    <br />
+      <br />
 
-    <label>Дата:</label>
-    <input type="date" id="dish-date" required />
+      <label>Дата:</label>
+      <input type="date" id="dish-date" required />
 
-    <br />
+      <br />
 
-    <button type="submit">Добавить блюдо</button>
-  </form>
+      <button type="submit">Добавить блюдо</button>
+    </form>
 
-  <h2>Все блюда</h2>
-  <div id="dishes-container">Загрузка блюд...</div>
+    <h2>Все блюда</h2>
+    <div id="dishes-container">Загрузка блюд...</div>
+  </div>
 
   <!-- Подключаем модули -->
   <script type="module" src="/frontend/js/auth.js"></script>
   <script type="module" src="/frontend/js/dishes-page.js"></script>
-  <!-- === Уведомления === -->
-  <div id="notification-container">
-    <div class="notification success hidden">
-      <span class="message">Блюдо успешно добавлено</span>
-      <button class="close-btn">&times;</button>
-    </div>
-  </div>
+
+  <!-- === Уведомления (только контейнер) === -->
+  <div id="notification-container"></div>
+
 </body>
 </html>

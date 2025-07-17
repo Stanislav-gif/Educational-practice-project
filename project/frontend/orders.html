@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Заказы</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -18,32 +20,30 @@
     </ul>
   </nav>
 
-  <h1>Заказы</h1>
+  <div class="container">
+    <h1>Заказы</h1>
 
-  <!-- Фильтр заказов (доступен всем) -->
-  <div class="filter-container">
-    <label for="order-filter">Фильтр по статусу:</label>
-    <select id="order-filter" class="filter-select">
-      <option value="all">Все статусы</option>
-      <option value="new">Новый</option>
-      <option value="in_process">В процессе</option>
-      <option value="completed">Выполнен</option>
-    </select>
-  </div>
-
-  <!-- Контейнер для отображения заказов -->
-  <div id="orders-list">Загрузка заказов...</div>
-
-  <!-- === Уведомления === -->
-  <div id="notification-container">
-    <div class="notification success hidden">
-      <span class="message">Блюдо успешно добавлено</span>
-      <button class="close-btn">&times;</button>
+    <!-- Фильтр заказов (доступен всем) -->
+    <div class="filter-container">
+      <label for="order-filter">Фильтр по статусу:</label>
+      <select id="order-filter" class="filter-select">
+        <option value="all">Все статусы</option>
+        <option value="new">Новый</option>
+        <option value="in_process">В процессе</option>
+        <option value="completed">Выполнен</option>
+      </select>
     </div>
+
+    <!-- Контейнер для отображения заказов -->
+    <div id="orders-list">Загрузка заказов...</div>
   </div>
 
   <!-- Подключаем JS -->
   <script type="module" src="/frontend/js/auth.js"></script>
   <script type="module" src="/frontend/js/orders-page.js"></script>
+
+  <!-- === Уведомления (только контейнер) === -->
+  <div id="notification-container"></div>
+
 </body>
 </html>

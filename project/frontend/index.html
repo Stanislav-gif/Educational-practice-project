@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Главная</title>
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -19,18 +21,18 @@
     </ul>
   </nav>
 
-  <h1>Добро пожаловать в кафе</h1>
-  <p>Перед тем как заходить туда и делать заказ.Нужно Зарегистрироваться!</p>
-  <p>Выберите раздел выше, чтобы посмотреть меню и сделать заказ.</p>
-  <p>Также есть раздел-заказы,в котором ты можешь посмотреть свой заказ и статус его готовности.</p>
+  <div class="container">
+    <h1>Добро пожаловать в кафе</h1>
+    <p>Перед тем как заходить туда и делать заказ, нужно зарегистрироваться!</p>
+    <p>Выберите раздел выше, чтобы посмотреть меню и сделать заказ.</p>
+    <p>Также есть раздел «Заказы», в котором вы можете посмотреть свой заказ и статус его готовности.</p>
+  </div>
+
   <!-- Подключаем JS -->
   <script type="module" src="js/auth.js"></script>
-  <!-- === Уведомления === -->
-  <div id="notification-container">
-    <div class="notification success hidden">
-      <span class="message">Блюдо успешно добавлено</span>
-      <button class="close-btn">&times;</button>
-    </div>
-  </div>
+
+  <!-- === Уведомления (только контейнер) === -->
+  <div id="notification-container"></div>
+
 </body>
 </html>

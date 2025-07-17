@@ -1,16 +1,40 @@
+/* === Глобальные стили === */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+  color: #2c3e50;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  color: #2e7d32;
+  margin-top: 0;
+}
+
+p {
+  line-height: 1.6;
+}
+
 /* === Навигация === */
 .admin-only.hidden {
   display: none;
 }
 
 #main-nav {
-  background-color: #28a745; /* Зелёный фон */
+  background: linear-gradient(90deg, #66bb6a, #81c784);
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+  padding: 14px 24px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 #main-nav ul {
@@ -18,7 +42,7 @@
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 20px;
+  gap: 24px;
 }
 
 #main-nav li {
@@ -28,83 +52,98 @@
 #main-nav a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease, background-color 0.3s ease;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  padding: 8px 10px;
+  border-radius: 6px;
 }
 
 #main-nav a:hover {
-  color: #fff;
-  background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  padding: 4px 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
 }
 
 #main-nav .right {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
 }
 
 #logout-li a {
+  background-color: #e53935;
   color: white;
-  text-decoration: none;
-  background-color: #dc3545; /* Красный фон для кнопки выхода */
-  border-radius: 5px;
-  padding: 5px 10px;
-  transition: background-color 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 6px;
   font-size: 14px;
+  transition: background-color 0.3s ease;
 }
 
 #logout-li a:hover {
-  background-color: #c82333;
+  background-color: #c62828;
 }
 
 #login-status {
   font-size: 14px;
-  color: white;
+  color: #f8f8f8;
 }
 
 #username {
   font-weight: bold;
+  color: #fffde7;
 }
 
 
 /* === Уведомления === */
 #notification-container {
   position: fixed;
-  top: 10px;
-  right: 10px;
-  z-index: 9999; /* Поверх всех элементов */
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
 }
 
 .notification {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 20px;
+  padding: 14px 18px;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   opacity: 1;
   transform: translateY(0);
-  font-family: sans-serif;
-  max-width: 400px;
+  transition: all 0.4s ease;
+  font-family: inherit;
+  max-width: 320px;
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .notification.success {
-  background-color: #28a745; /* Яркий зелёный для успеха */
-  color: white;
+  background-color: #4caf50;
+  color: #ffffff;
 }
 
 .notification.error {
-  background-color: #dc3545; /* Яркий красный для ошибки */
-  color: white;
+  background-color: #ef5350;
+  color: #ffffff;
 }
 
 .notification .message {
-  font-size: 16px; /* Увеличенный текст */
-  font-weight: bold;
-  margin-right: 10px;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .notification .close-btn {
@@ -112,256 +151,233 @@
   border: none;
   color: white;
   cursor: pointer;
-  font-size: 18px;
-  padding: 0;
+  font-size: 20px;
+  margin-left: 10px;
 }
 
 .notification.hidden {
   opacity: 0;
   transform: translateY(-20px);
+  pointer-events: none;
 }
 
 
-/* === Форма регистрации === */
-#register-form {
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#register-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-#register-form input,
-#register-form select {
+/* === Формы === */
+.auth-form {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  margin: 40px auto;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e0e0e0;
+  max-width: 420px;
   width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: border-color 0.3s ease;
+  padding-right: 50px; /* Сдвигаем форму левее */
 }
 
-#register-form input:focus,
-#register-form select:focus {
-  border-color: green;
+.auth-form label {
+  font-weight: 500;
+  margin-bottom: 6px;
+  display: block;
+  color: #333;
+}
+
+.auth-form input,
+.auth-form select,
+.auth-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 18px; /* Более крупный шрифт — теперь текст лучше виден */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  margin-bottom: 14px;
+  font-family: inherit;
+}
+
+.auth-form input:focus,
+.auth-form select:focus,
+.auth-form textarea:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
   outline: none;
 }
 
-#register-form button {
-  background-color: green;
+.auth-form button {
+  background: linear-gradient(to right, #4CAF50, #66bb6a);
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 12px 16px;
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-#register-form button:hover {
-  background-color: darkgreen;
-}
-
-
-/* === Форма добавления блюда === */
-#add-dish-form {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-}
-
-#add-dish-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-#add-dish-form input,
-#add-dish-form textarea {
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  transition: border-color 0.3s ease;
+  max-width: 220px;
 }
 
-#add-dish-form input:focus,
-#add-dish-form textarea:focus {
-  border-color: green;
-  outline: none;
-}
-
-#add-dish-form button {
-  background-color: green;
-  color: white;
-  border: none;
-  padding: 8px 12px;
-  cursor: pointer;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
-}
-
-#add-dish-form button:hover {
-  background-color: darkgreen;
+.auth-form button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.2);
 }
 
 
 /* === Карточка блюда === */
 .dish-card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.dish-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .dish-card h3 {
   margin-top: 0;
+  font-size: 20px;
+  color: #2e7d32;
 }
 
 
-/* Управление количеством блюд */
+/* === Управление количеством блюд === */
 .quantity-control {
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  margin: 14px 0;
 }
 
 .qty-btn {
-  background-color: #ddd;
-  border: none;
-  padding: 5px 10px;
+  background-color: #f1f1f1;
+  border: 1px solid #ddd;
+  padding: 8px 14px;
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
+  font-size: 18px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
 }
 
 .qty-btn:hover {
-  background-color: #ccc;
+  background-color: #e0e0e0;
 }
 
 .quantity-input {
-  width: 50px;
+  width: 60px;
   text-align: center;
-  margin: 0 5px;
-  font-size: 14px;
+  margin: 0 10px;
+  font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
   transition: border-color 0.3s ease;
 }
 
-.quantity-input:focus {
-  border-color: green;
-  outline: none;
-}
-
 .order-btn {
-  background-color: green;
+  background: linear-gradient(to right, #4CAF50, #66bb6a);
   color: white;
   border: none;
-  padding: 8px 12px;
+  padding: 10px 16px;
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  margin-top: 10px;
 }
 
 .order-btn:hover {
-  background-color: darkgreen;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.2);
 }
 
 
 /* === Карточка заказа === */
 .order-card {
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
 .order-card p {
-  margin: 5px 0;
+  margin: 6px 0;
+  font-size: 15px;
+  color: #333;
 }
 
 
 /* === Кнопки действий с заказами === */
 .order-actions button {
   margin-right: 10px;
-  padding: 5px 10px;
-  font-size: 14px;
-  cursor: pointer;
+  padding: 8px 16px;
+  font-size: 15px;
   border: none;
-  border-radius: 4px;
-  transition: opacity 0.3s ease;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-/* Статус "В процессе" */
 .order-actions button:nth-child(1) {
-  background-color: orange;
+  background: linear-gradient(to right, #ffa726, #fb8c00);
   color: white;
 }
 
-/* Статус "Выполнен" */
 .order-actions button:nth-child(2) {
-  background-color: green;
+  background: linear-gradient(to right, #66bb6a, #4caf50);
   color: white;
 }
 
 .order-actions button:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .complete-btn {
-  background-color: blue;
+  background: linear-gradient(to right, #2196f3, #42a5f5);
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 8px 16px;
   cursor: pointer;
-  border-radius: 4px;
-  font-size: 14px;
-  transition: background-color 0.3s ease;
+  border-radius: 8px;
+  font-size: 15px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
 .complete-btn:hover {
-  background-color: darkblue;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(33, 150, 243, 0.2);
 }
 
 
 /* === Фильтр заказов === */
 .filter-container {
-  margin-bottom: 20px;
+  margin: 25px 0;
 }
 
 .filter-select {
   width: 100%;
   max-width: 300px;
-  padding: 8px;
-  font-size: 14px;
+  padding: 12px;
+  font-size: 15px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  outline: none;
-  transition: border-color 0.3s ease;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: inherit;
 }
 
 .filter-select:focus {
-  border-color: green;
-  box-shadow: 0 0 0 2px rgba(0, 128, 0, 0.2);
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+  outline: none;
 }

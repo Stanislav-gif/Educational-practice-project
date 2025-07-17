@@ -6,9 +6,8 @@ from app.dependencies import get_current_user
 from app.db import get_db
 from app.models import Order
 from typing import List, Optional
-import logging
 
-logger = logging.getLogger(__name__)
+
 
 router = APIRouter(prefix="/orders", tags=["Заказы"])
 
@@ -27,9 +26,6 @@ def read_orders(
     db: Session = Depends(get_db),
     current_user=Depends(get_current_user)
 ):
-    logger.info(f"SERVER: Получен статус: {status}")
-    logger.info(f"SERVER: Тип статуса: {type(status)}")
-
     query = db.query(Order)
 
     if current_user.role != "admin":
@@ -47,7 +43,6 @@ def read_orders(
             query = query.filter(Order.status == normalized_status)
 
     orders = query.all()
-    logger.info(f"SERVER: Вернуто заказов: {len(orders)}")
     return orders
 
 # Обновление статуса заказа (только для администратора)

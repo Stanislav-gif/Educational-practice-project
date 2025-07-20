@@ -89,9 +89,20 @@ p {
 
 #username {
   font-weight: bold;
-  color: #fffde7;
+  color: #000000;
+  font-size: 18px;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 8px 12px;
+  transition: all 0.3s ease;
 }
 
+#username:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+  outline: none;
+}
 
 /* === Уведомления === */
 #notification-container {
@@ -161,49 +172,60 @@ p {
   pointer-events: none;
 }
 
-
 /* === Формы === */
-.auth-form {
+.auth-form,
+.form-container {
   background-color: #ffffff;
   border-radius: 12px;
   padding: 30px;
   margin: 40px auto;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
   border: 1px solid #e0e0e0;
-  max-width: 420px;
+  max-width: 600px;
   width: 100%;
-  padding-right: 50px; /* Сдвигаем форму левее */
 }
 
-.auth-form label {
+.form-container h2 {
+  color: #2e7d32;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form label {
   font-weight: 500;
   margin-bottom: 6px;
   display: block;
   color: #333;
 }
 
-.auth-form input,
-.auth-form select,
-.auth-form textarea {
+form input,
+form select,
+form textarea {
   width: 100%;
   padding: 12px 14px;
-  font-size: 18px; /* Более крупный шрифт — теперь текст лучше виден */
+  font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
   transition: all 0.3s ease;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   font-family: inherit;
+  color: #000000;
+  background-color: #ffffff;
 }
 
-.auth-form input:focus,
-.auth-form select:focus,
-.auth-form textarea:focus {
+form input:focus,
+form select:focus,
+form textarea:focus {
   border-color: #4CAF50;
   box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
   outline: none;
 }
 
-.auth-form button {
+form button {
   background: linear-gradient(to right, #4CAF50, #66bb6a);
   color: white;
   border: none;
@@ -216,11 +238,15 @@ p {
   max-width: 220px;
 }
 
-.auth-form button:hover {
+form button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(76, 175, 80, 0.2);
 }
 
+/* === Отступ для кнопки === */
+.button-container {
+  margin-top: 20px;
+}
 
 /* === Карточка блюда === */
 .dish-card {
@@ -243,7 +269,6 @@ p {
   font-size: 20px;
   color: #2e7d32;
 }
-
 
 /* === Управление количеством блюд === */
 .quantity-control {
@@ -293,7 +318,6 @@ p {
   box-shadow: 0 4px 10px rgba(76, 175, 80, 0.2);
 }
 
-
 /* === Карточка заказа === */
 .order-card {
   background-color: #ffffff;
@@ -315,7 +339,6 @@ p {
   font-size: 15px;
   color: #333;
 }
-
 
 /* === Кнопки действий с заказами === */
 .order-actions button {
@@ -358,7 +381,6 @@ p {
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(33, 150, 243, 0.2);
 }
-
 
 /* === Фильтр заказов === */
 .filter-container {
